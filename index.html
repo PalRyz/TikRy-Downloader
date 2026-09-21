@@ -2838,42 +2838,60 @@ html.perf-lite .poke-nav-btn,html.perf-lite .poke-autoplay{
 .opt-row.res-off .opt-badge.badge-off{border-color:rgba(251,191,36,.4);color:var(--cyb-amber)}
 
 /* ============================================================
-   v18 - KARTU PROGRES DOWNLOAD REAL (cyber)
+   v19.1 - KARTU PROSES DOWNLOAD: rapi, bertahap, bisa dibatalkan
    ============================================================ */
 #dlProgWrap{position:fixed;left:50%;bottom:96px;z-index:6000;width:min(400px,92vw);
   transform:translateX(-50%) translateY(16px);opacity:0;pointer-events:none;
-  transition:opacity .3s var(--ease),transform .3s var(--ease)}
+  transition:opacity .3s var(--ease-out),transform .3s var(--ease-out)}
 #dlProgWrap.on{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
-.dlprog{position:relative;border-radius:14px;padding:13px 15px;
+.dlprog{position:relative;border-radius:14px;padding:12px 14px;
   background:linear-gradient(165deg,rgba(15,21,40,.98),rgba(7,11,22,.98));
   background-color:rgba(9,13,26,.98);
   border:1px solid rgba(var(--cyb-cyan-rgb),.4);
   box-shadow:0 0 0 1px rgba(0,0,0,.45),0 18px 40px rgba(0,0,0,.55),
-    0 0 24px rgba(var(--cyb-cyan-rgb),.18)}
+    0 0 24px rgba(var(--cyb-cyan-rgb),.16)}
 .dlprog-c{position:absolute;width:11px;height:11px;border:0 solid rgba(var(--cyb-cyan-rgb),.9);
   pointer-events:none;filter:drop-shadow(0 0 5px rgba(var(--cyb-cyan-rgb),.6))}
 .dlprog-c.tl{top:-5px;left:-5px;border-top-width:1.5px;border-left-width:1.5px;border-top-left-radius:6px}
 .dlprog-c.br{bottom:-5px;right:-5px;border-bottom-width:1.5px;border-right-width:1.5px;border-bottom-right-radius:6px}
-.dlprog-head{display:flex;align-items:center;gap:8px;margin-bottom:9px}
-.dlprog-title{flex:1;min-width:0;font-family:var(--cyber-font);font-size:.66rem;font-weight:700;
-  letter-spacing:.06em;color:#cff3ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dlprog-x{flex:none;width:26px;height:26px;border-radius:8px;cursor:pointer;
-  border:1px solid rgba(248,113,113,.4);background:rgba(248,113,113,.08);color:#f87171;
+.dlprog-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.dlprog-ico{flex:none}
+.dlprog-titles{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.dlprog-name{font-family:var(--cyber-font);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(190,215,235,.6);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dlprog-title{font-size:.8rem;font-weight:700;color:#eafdff;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dlprog-x{flex:none;width:32px;height:32px;border-radius:9px;cursor:pointer;
+  border:1px solid rgba(248,113,113,.45);background:rgba(248,113,113,.1);color:#f87171;
   display:flex;align-items:center;justify-content:center;
-  transition:background .2s,border-color .2s,transform .15s}
-.dlprog-x:hover{background:rgba(248,113,113,.18);border-color:rgba(248,113,113,.7)}
-.dlprog-x:active{transform:scale(.9)}
+  transition:background .2s,border-color .2s,transform .15s,box-shadow .2s}
+.dlprog-x:hover{background:rgba(248,113,113,.22);border-color:#f87171;
+  box-shadow:0 0 10px rgba(248,113,113,.35)}
+.dlprog-x:active{transform:scale(.88)}
+.dlprog-x:focus-visible{outline:2px solid #f87171!important;outline-offset:2px}
+.dlprog-steps{display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.dlstep{display:inline-flex;align-items:center;gap:5px;font-family:var(--cyber-font);font-size:.56rem;
+  letter-spacing:.12em;color:rgba(190,215,235,.45);transition:color .25s}
+.dlstep i{font-style:normal;width:15px;height:15px;border-radius:5px;
+  border:1px solid rgba(var(--cyb-cyan-rgb),.25);display:inline-flex;align-items:center;
+  justify-content:center;font-size:.52rem;transition:all .25s}
+.dlstep.on{color:#cff3ff;text-shadow:0 0 8px rgba(var(--cyb-cyan-rgb),.35)}
+.dlstep.on i{border-color:rgba(var(--cyb-cyan-rgb),.9);background:rgba(var(--cyb-cyan-rgb),.14);
+  box-shadow:0 0 8px rgba(var(--cyb-cyan-rgb),.4)}
+.dlstep.ok{color:#34d399}
+.dlstep.ok i{border-color:rgba(52,211,153,.7);background:rgba(52,211,153,.12)}
+.dlsep{flex:none;width:10px;height:1px;background:rgba(var(--cyb-cyan-rgb),.25)}
+.dlprog-pct{margin-left:auto;font-family:var(--cyber-font);font-size:.74rem;
+  color:var(--cyb-amber);text-shadow:0 0 8px rgba(251,191,36,.4)}
 .dlprog-bar{height:7px;border-radius:99px;background:rgba(255,255,255,.06);
   border:1px solid rgba(var(--cyb-cyan-rgb),.15);overflow:hidden;position:relative}
 .dlprog-fill{height:100%;width:0%;border-radius:99px;
   background:linear-gradient(90deg,#22d3ee,#3b82f6 55%,#fbbf24);
-  box-shadow:0 0 10px rgba(var(--cyb-cyan-rgb),.55);transition:width .25s var(--ease)}
+  box-shadow:0 0 10px rgba(var(--cyb-cyan-rgb),.55);transition:width .3s var(--ease-out)}
 .dlprog.indet .dlprog-fill{width:38%!important;animation:dlIndet 1.2s ease-in-out infinite}
 @keyframes dlIndet{0%{margin-left:-40%}100%{margin-left:105%}}
-.dlprog-meta{display:flex;align-items:center;gap:10px;margin-top:8px;
+.dlprog-meta{display:flex;align-items:center;gap:10px;margin-top:7px;
   font-family:var(--cyber-font);font-size:.6rem}
-.dlprog-pct{color:var(--cyb-amber);font-weight:800;letter-spacing:.06em;
-  text-shadow:0 0 8px rgba(251,191,36,.4)}
 .dlprog-size,.dlprog-speed{color:rgba(190,215,235,.72);letter-spacing:.04em}
 .dlprog.ok{border-color:rgba(52,211,153,.6)}
 .dlprog.ok .dlprog-fill{background:linear-gradient(90deg,#34d399,#22d3ee);
@@ -2883,6 +2901,89 @@ html.perf-lite .poke-nav-btn,html.perf-lite .poke-autoplay{
 html.perf-lite .dlprog{box-shadow:0 6px 18px rgba(0,0,0,.4)}
 html.perf-lite .dlprog.indet .dlprog-fill{animation:none;width:100%!important}
 html.perf-lite #dlProgWrap{transition:opacity .2s}
+
+/* ============================================================
+   v19 - SEMUA ANIMASI LEBIH HALUS (transisi seragam & lembut)
+   ============================================================ */
+.feature-card,.social-card,.stat,.method-card,.history-item,.faq-item,.gif-frame,
+.slide-item,.opt-panel,.input-card,.result-card,.preview-card{
+  transition:transform .28s var(--ease),box-shadow .28s var(--ease),
+    border-color .28s var(--ease),background-color .28s var(--ease),opacity .28s var(--ease)}
+/* hover lembut: terangkat tipis, tanpa loncat */
+.feature-card:hover,.method-card:hover,.social-card:hover{transform:translateY(-3px)}
+.stat:hover{transform:translateY(-2px)}
+.gif-frame:hover{transform:translateY(-2px) scale(1.04)}
+.history-item:hover{transform:translateX(3px)}
+/* tekan: kembali dengan halus */
+.feature-card:active,.method-card:active,.social-card:active,.stat:active,
+.gif-frame:active,.history-item:active{transition-duration:.12s}
+/* bar progres & kartu download: gerak mulus */
+.dlprog-fill{transition:width .3s var(--ease-out)}
+#dlProgWrap{transition:opacity .3s var(--ease-out),transform .3s var(--ease-out)}
+/* toast & modal tetap lembut */
+.toast{transition:opacity .28s var(--ease-out),transform .28s var(--ease-out)}
+.modal{transition:transform .32s var(--ease-out)}
+/* Pengaman tampilan: Mode Ringan & reduced-motion tanpa lift hover */
+html.perf-lite .feature-card:hover,html.perf-lite .method-card:hover,
+html.perf-lite .social-card:hover,html.perf-lite .stat:hover,
+html.perf-lite .gif-frame:hover,html.perf-lite .history-item:hover{transform:none}
+@media (prefers-reduced-motion:reduce){
+  .feature-card:hover,.method-card:hover,.social-card:hover,.stat:hover,
+  .gif-frame:hover,.history-item:hover{transform:none!important}
+}
+
+/* ============================================================
+   v19.2 - ANIMASI LEBIH LUWES (spring & momentum, tidak kaku)
+   ============================================================ */
+:root{--spring:cubic-bezier(.34,1.56,.64,1);--glide:cubic-bezier(.22,1,.36,1)}
+/* tombol: naik dengan pantulan kecil, tekan balik cepat */
+.btn,.btn-ghost,.btn-neon,.nav-settings,.opt-dl,.fps-chip,.res-chip,.view-option,
+.slide-action-btn,.preview-nav-btn,.poke-nav-btn,.poke-autoplay,.close-menu,.collab-btn{
+  transition:transform .32s var(--spring),box-shadow .28s var(--ease-out),
+    border-color .25s,color .25s,background-color .25s,filter .28s}
+.btn:hover,.btn-ghost:hover,.btn-neon:hover,.nav-settings:hover,.opt-dl:hover,.fps-chip:hover,
+.res-chip:hover,.view-option:hover,.collab-btn:hover{transform:translateY(-2px) scale(1.03)}
+.slide-action-btn:hover,.preview-nav-btn:hover,.poke-nav-btn:hover,.poke-autoplay:hover,
+.nav-settings:hover,.close-menu:hover{transform:translateY(-2px) scale(1.07)}
+.btn:active,.btn-ghost:active,.btn-neon:active,.nav-settings:active,.opt-dl:active,
+.fps-chip:active,.res-chip:active,.view-option:active,.collab-btn:active{transition-duration:.14s}
+/* ganti halaman: gliding + skala halus */
+.section.active{animation:pageGlide .5s var(--glide)}
+@keyframes pageGlide{from{opacity:0;transform:translateY(18px) scale(.985)}
+  to{opacity:1;transform:translateY(0) scale(1)}}
+/* elemen muncul saat scroll: naik lebih jauh tapi sangat lembut */
+.reveal-init{opacity:0;transform:translateY(24px) scale(.98)}
+.reveal-init,.reveal-in{transition:opacity .7s var(--glide),transform .7s var(--glide)}
+/* kartu hasil & baris pilihan */
+.result-card{animation-duration:.55s;animation-timing-function:var(--glide)}
+.opt-row,.method-card,.feature-card{transition:transform .3s var(--spring),box-shadow .28s var(--ease-out),
+  border-color .25s,background .25s}
+.opt-row:hover{transform:translateX(3px)}
+/* nav bawah: pantulan lembut */
+.bn-item{transition:transform .3s var(--spring),box-shadow .25s,color .25s,background .25s}
+.bn-item:active{transition-duration:.14s}
+/* toast masuk dengan pantulan */
+.toast{transition:opacity .32s var(--spring),transform .32s var(--spring)}
+/* kartu proses download: pop masuk */
+.dlprog{transform:translateY(10px) scale(.94);transition:transform .42s var(--spring)}
+#dlProgWrap.on .dlprog{transform:translateY(0) scale(1)}
+.dlprog-x{transition:transform .25s var(--spring),background .2s,border-color .2s,box-shadow .2s}
+/* chip resolusi aktif: pop kecil */
+.res-chip{transition:transform .3s var(--spring),box-shadow .28s,border-color .25s,color .25s,background .25s}
+.res-chip.active{transform:scale(1.03)}
+/* modal overlay lebih lembut */
+.modal-overlay{transition:opacity .3s var(--ease-out)}
+/* hormati reduced-motion & Mode Ringan */
+@media (prefers-reduced-motion:reduce){
+  .section.active{animation:none}
+  .btn:hover,.btn-ghost:hover,.btn-neon:hover,.nav-settings:hover,.opt-dl:hover,.fps-chip:hover,
+  .res-chip:hover,.view-option:hover,.collab-btn:hover,.slide-action-btn:hover,
+  .preview-nav-btn:hover,.poke-nav-btn:hover,.poke-autoplay:hover,.opt-row:hover{transform:none!important}
+}
+html.perf-lite .section.active{animation:none}
+html.perf-lite .btn:hover,html.perf-lite .btn-ghost:hover,html.perf-lite .btn-neon:hover,
+html.perf-lite .opt-dl:hover,html.perf-lite .fps-chip:hover,html.perf-lite .res-chip:hover,
+html.perf-lite .view-option:hover,html.perf-lite .collab-btn:hover{transform:none}
 </style>
 </style>
 </head>
@@ -3406,7 +3507,7 @@ html.perf-lite #dlProgWrap{transition:opacity .2s}
     <p class="about-bio" id="ownerBio">Membuat tools yang memudahkan kehidupan digital. TikRyz dibuat dengan cinta untuk komunitas Indonesia.</p>
     <div class="social-grid" id="socialGrid"></div>
     <div class="about-owner-card">
-      <div class="about-owner-row"><span>📧</span><b>Email</b><a href="/cdn-cgi/l/email-protection#244a4b524548565d5e151617644349454d480a474b49"><span class="__cf_email__" data-cfemail="2c42435a4d405e55561d1e1f6c4b414d4540024f4341">[email&#160;protected]</span></a></div>
+      <div class="about-owner-row"><span>📧</span><b>Email</b><a href="/cdn-cgi/l/email-protection#6f0100190e031d16155e5d5c2f08020e0603410c0002"><span class="__cf_email__" data-cfemail="147a7b627578666d6e252627547379757d783a777b79">[email&#160;protected]</span></a></div>
       <div class="about-owner-row"><span>🎵</span><b>TikTok</b><a href="https://tiktok.com/@pal_446" target="_blank" rel="noopener">@pal_446</a></div>
       <div class="about-owner-row"><span>📸</span><b>Instagram</b><a href="https://instagram.com/palryz744" target="_blank" rel="noopener">@palryz744</a></div>
     </div>
@@ -3525,7 +3626,7 @@ html.perf-lite #dlProgWrap{transition:opacity .2s}
     </button>
     <div class="contact-alt">
       <span>Atau kirim langsung ke:</span>
-      <a href="/cdn-cgi/l/email-protection#a2cccdd4c3ced0dbd8939091e2c5cfc3cbce8cc1cdcf" id="contactMailtoLink" class="mailto-link">📧 <span class="__cf_email__" data-cfemail="513f3e27303d23282b60636211363c30383d7f323e3c">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#6806071e09041a1112595a5b280f05090104460b0705" id="contactMailtoLink" class="mailto-link">📧 <span class="__cf_email__" data-cfemail="2f4140594e435d56551e1d1c6f48424e4643014c4042">[email&#160;protected]</span></a>
     </div>
   </div>
 </div>
@@ -6777,6 +6878,37 @@ function pickVideoMime() {
   return candidates.find(type => MediaRecorder.isTypeSupported(type)) || null;
 }
 
+// v19.4 - probe durasi NYATA sebuah blob video (buka pakai <video>)
+// -> pengaman pamungkas anti "video 1-2 detik": tidak bergantung header/API
+function probeBlobDuration(blob) {
+  return new Promise(function (resolve) {
+    if (!blob || !blob.size) return resolve(0);
+    const url = URL.createObjectURL(blob);
+    const v = document.createElement('video');
+    v.preload = 'metadata'; v.muted = true; v.playsInline = true;
+    const selesai = function (d) {
+      try { v.removeAttribute('src'); v.load(); } catch (e) {}
+      try { URL.revokeObjectURL(url); } catch (e2) {}
+      resolve(Number(d) || 0);
+    };
+    const t = setTimeout(function () { selesai(0); }, 9000);
+    v.onloadedmetadata = function () {
+      let d = v.duration;
+      if (!isFinite(d) || d <= 0) {
+        try {
+          v.onseeked = function () { clearTimeout(t); selesai(v.duration); };
+          v.currentTime = 1e6;
+          setTimeout(function () { clearTimeout(t); selesai(v.duration); }, 3500);
+          return;
+        } catch (e) {}
+      }
+      clearTimeout(t); selesai(d);
+    };
+    v.onerror = function () { clearTimeout(t); selesai(0); };
+    v.src = url;
+  });
+}
+
 function saveBlob(blob, filename) {
   const blobUrl = URL.createObjectURL(blob);
   const link = document.createElement('a');
@@ -7086,7 +7218,9 @@ function setBtnLoading(el, on) {
 // ----------------------------------------------------------
 async function fetchBlobCapped(url, maxBytes, onProgress, extCtrl) {
   const ctrl = new AbortController();
-  const timer = setTimeout(() => { try { ctrl.abort(); } catch (e) {} }, 60000);
+  // v19.1: cepat & responsif - batalkan bila koneksi mandek 18 dtk tanpa data (total max 90 dtk)
+  let stall = setTimeout(() => { try { ctrl.abort(); } catch (e) {} }, 18000);
+  const hard = setTimeout(() => { try { ctrl.abort(); } catch (e) {} }, 90000);
   // v18: dukung tombol BATAL dari kartu progres download
   let onExtAbort = null;
   if (extCtrl && extCtrl.signal) {
@@ -7117,102 +7251,252 @@ async function fetchBlobCapped(url, maxBytes, onProgress, extCtrl) {
       if (step.done) break;
       const val = step.value;
       received += val.byteLength || 0;
+      clearTimeout(stall); stall = setTimeout(() => { try { ctrl.abort(); } catch (e) {} }, 18000);
       if (received > maxBytes) {
         try { await reader.cancel(); } catch (e) {}
         try { ctrl.abort(); } catch (e) {}
         return { ok: false, reason: 'tooBig', size: received };
       }
       chunks.push(val);
-      if (onProgress) onProgress(received);
+      if (onProgress) onProgress(received, len);
     }
     if (!received) return { ok: false, reason: 'empty' };
+    // v19.4: server menutup koneksi lebih awal = berkas TERPOTONG -> jangan dianggap sukses
+    if (len && received < len * 0.98) return { ok: false, reason: 'short', size: received };
     return { ok: true, blob: new Blob(chunks, { type: type }), size: received };
   } catch (e) {
     return { ok: false, reason: 'error' };
   } finally {
-    clearTimeout(timer);
+    clearTimeout(stall); clearTimeout(hard);
     if (onExtAbort && extCtrl && extCtrl.signal) { try { extCtrl.signal.removeEventListener('abort', onExtAbort); } catch (e2) {} }
   }
 }
 
-async function downloadWithFallback(url, filename, isBig) {
-  const limitBytes = MEM_LIMIT_MB * 1048576;
-
-  // 1) Unduhan NYATA: progres (% / MB / kecepatan) + bisa dibatalkan
-  if (isBig) {
-    if (window.__dlProg) window.__dlProg.label('Mengunduh...');
-    const ambil = await fetchBlobCapped(url, limitBytes, function (rec, total) {
-      if (window.__dlProg) window.__dlProg.recv(rec, total);
-    }, window.__dlSignal);
-    if (window.__dlSignal && window.__dlSignal.signal.aborted) return 'cancelled';
-    if (ambil.ok && ambil.blob && ambil.blob.size) {
-      if (window.__dlProg) window.__dlProg.label('Menyiapkan...');
-      const final = await maybeReencode(ambil.blob, filename, isBig);
-      if (final === 'open') return 'open';
-      if (window.__dlSignal && window.__dlSignal.signal.aborted) return 'cancelled';
-      if (window.__dlProg) window.__dlProg.label('Menyimpan...');
-      saveBlob(final.blob, final.filename); return 'saved';
-    }
-    if (ambil.reason === 'tooBig') {
-      const mb = ambil.size ? (ambil.size / 1048576).toFixed(1) + ' MB' : '';
-      showToast('Video ini ' + mb + ' (terlalu besar untuk diproses) - diunduh langsung supaya HP aman.', 'info');
-      openMedia(url, filename); return 'open';
-    }
+// v19.2 - FILE BESAR (mis. video 100MB+): tulis langsung ke DISK lewat
+// File System Access API -> tidak ada batas memori, ukuran selalu utuh,
+// progres tetap real-time, tetap bisa dibatalkan.
+async function streamToDisk(url, filename, onProg, extCtrl, exp) {
+  if (!window.showSaveFilePicker) return { ok: false, reason: 'nofsa' };
+  let writer = null, wtr = null, picked = false, onExtAbort = null;
+  exp = Number(exp) || 0;
+  // v19.3: file SISA POTONGAN wajib dihapus (MP4 faststart yang terpotong
+  // bisa diputar ~1 detik -> bikin video "1 detik"). Jangan pernah tinggalkan.
+  const removePartial = async function () {
+    try { if (picked && wtr && wtr.remove) await wtr.remove(); } catch (e) {}
+  };
+  const ctrl = new AbortController();
+  if (extCtrl && extCtrl.signal) {
+    onExtAbort = function () { try { ctrl.abort(); } catch (e) {} };
+    if (extCtrl.signal.aborted) onExtAbort();
+    else { try { extCtrl.signal.addEventListener('abort', onExtAbort); } catch (e) {} }
   }
+  let stall = setTimeout(() => { try { ctrl.abort(); } catch (e) {} }, 30000);
+  const hard = setTimeout(() => { try { ctrl.abort(); } catch (e) {} }, 600000);
+  try {
+    wtr = await window.showSaveFilePicker({ suggestedName: filename,
+      types: [{ description: 'Video MP4', accept: { 'video/mp4': ['.mp4'] } }] });
+    picked = true;
+    writer = await wtr.createWritable();
+    const res = await fetch(url, { signal: ctrl.signal });
+    if (!res || !res.ok) return { ok: false, reason: 'http' };
+    const total = parseInt(res.headers.get('content-length') || '0', 10) || 0;
+    if (!res.body || typeof res.body.getReader !== 'function') {
+      const blob = await res.blob();
+      await writer.write(blob); await writer.close(); writer = null;
+      return { ok: true, size: blob.size };
+    }
+    const reader = res.body.getReader();
+    let received = 0;
+    for (;;) {
+      const step = await reader.read();
+      if (step.done) break;
+      clearTimeout(stall); stall = setTimeout(() => { try { ctrl.abort(); } catch (e) {} }, 30000);
+      await writer.write(step.value);
+      received += step.value.byteLength || 0;
+      if (onProg) onProg(received, total);
+    }
+    await writer.close(); writer = null;
+    if (!received) { await removePartial(); return { ok: false, reason: 'empty' }; }
+    // v19.4: verifikasi GANDA (tidak tergantung API):
+    // a) total dari content-length -> harus hampir penuh
+    if (total > 0 && received < total * 0.98) { await removePartial(); return { ok: false, reason: 'short', size: received }; }
+    // b) ukuran API (kalau ada) -> minimal 55%
+    if (exp > 5 * 1048576 && received < exp * 0.55) { await removePartial(); return { ok: false, reason: 'short', size: received }; }
+    // c) tanpa info apa pun -> video < 3 MB dianggap terpotong (video asli rata-rata jauh lebih besar)
+    if (total <= 0 && exp <= 0 && received < 3 * 1048576) { await removePartial(); return { ok: false, reason: 'short', size: received }; }
+    return { ok: true, size: received };
+  } catch (e) {
+    try { if (writer) await writer.abort(); } catch (e2) {}
+    await removePartial();
+    if (e && e.name === 'AbortError') return { ok: false, reason: picked ? 'abort' : 'pickercancel' };
+    return { ok: false, reason: 'error' };
+  } finally {
+    clearTimeout(stall); clearTimeout(hard);
+    if (onExtAbort && extCtrl && extCtrl.signal) { try { extCtrl.signal.removeEventListener('abort', onExtAbort); } catch (e3) {} }
+  }
+}
 
-  // 1b) Berkas kecil (mp3/cover) -> ambil biasa
-  if (!isBig) {
-    if (window.__dlProg) window.__dlProg.label('Mengunduh...');
-    try {
-      const res = await fetchWithTimeout(url, 20000);
-      if (res && res.ok) {
+// v19.6 - verifikasi keutuhan blob: ukuran vs API + DURASI nyata file
+async function apakahUtuh(blob, exp) {
+  if (!(blob && blob.size > 0)) return false;
+  if (exp > 5 * 1048576 && blob.size < exp * 0.55) return false;
+  const asli = Number(lastVideoDuration || 0);
+  if (asli > 4) {
+    const d = await probeBlobDuration(blob);
+    if (d > 0 && d < asli * 0.6) return false;
+    if (!(d > 0) && blob.size < 3 * 1048576 && asli > 10) return false;
+  }
+  return true;
+}
+
+// v19.6 - unduh LANGSUNG dengan LANJUTAN OTOMATIS (HTTP Range):
+// koneksi putus di tengah -> minta SISA byte dari posisi terakhir (maks 5x)
+// -> file selalu utuh. MENGEMBALIKAN blob atau null (tidak pernah buka tab).
+async function unduhLangsung(url, onProg, exp) {
+  const sig = window.__dlSignal;
+  const ctrl = new AbortController();
+  let onUserAbort = null;
+  if (sig && sig.signal) {
+    onUserAbort = function () { try { ctrl.abort(); } catch (e) {} };
+    if (sig.signal.aborted) onUserAbort();
+    else { try { sig.signal.addEventListener('abort', onUserAbort); } catch (e) {} }
+  }
+  const parts = [];
+  let received = 0, total = 0, ctype = 'video/mp4', stall = null, ok = true;
+  const armStall = function () {
+    clearTimeout(stall);
+    stall = setTimeout(function () { try { ctrl.abort(); } catch (e) {} }, 30000);
+  };
+  const baca = async function (res) {
+    if (!res.body || typeof res.body.getReader !== 'function') {
+      const bl = await res.blob();
+      parts.push(bl); received += bl.size; return;
+    }
+    const reader = res.body.getReader();
+    for (;;) {
+      const step = await reader.read();
+      if (step.done) break;
+      parts.push(step.value);
+      received += step.value.byteLength || 0;
+      armStall();
+      if (onProg) onProg(received, total);
+      if (received > 400 * 1048576) { ok = false; try { await reader.cancel(); } catch (e) {} return; }
+    }
+  };
+  try {
+    armStall();
+    const res = await fetch(url, { signal: ctrl.signal });
+    if (!res || !res.ok) return null;
+    ctype = res.headers.get('content-type') || 'video/mp4';
+    total = parseInt(res.headers.get('content-length') || '0', 10) || 0;
+    await baca(res);
+    // LANJUTAN OTOMATIS bila koneksi ditutup lebih awal
+    let lanjut = 0;
+    while (ok && total > 0 && received < total * 0.98 && lanjut < 5) {
+      if (sig && sig.signal.aborted) return null;
+      lanjut++;
+      armStall();
+      let r2 = null;
+      try { r2 = await fetch(url, { headers: { Range: 'bytes=' + received + '-' }, signal: ctrl.signal }); }
+      catch (e) { break; }
+      if (!r2 || !r2.ok || r2.status !== 206) { try { if (r2 && r2.body) await r2.body.cancel(); } catch (e) {} break; }
+      await baca(r2);
+    }
+    if (sig && sig.signal.aborted) return null;
+    if (!ok || !received) return null;
+    if (total > 0 && received < total * 0.98) return null;
+    if (exp > 5 * 1048576 && received < exp * 0.55) return null;
+    return new Blob(parts, { type: ctype });
+  } catch (e) {
+    return null;
+  } finally {
+    clearTimeout(stall);
+    if (onUserAbort && sig && sig.signal) { try { sig.signal.removeEventListener('abort', onUserAbort); } catch (e) {} }
+  }
+}
+
+// v19.6 - semua proxy CORS dicoba SATU PER SATU (2 ronde) sampai dapat file utuh
+async function proxyBertahap(url, exp) {
+  for (let ronde = 0; ronde < 2; ronde++) {
+    for (const build of CORS_PROXIES) {
+      if (window.__dlSignal && window.__dlSignal.signal.aborted) return null;
+      try {
+        const res = await fetchWithTimeout(build(url), ronde === 0 ? 25000 : 35000);
+        if (!(res && res.ok)) continue;
         const blob = await res.blob();
-        if (blob && blob.size) {
-          if (window.__dlProg) window.__dlProg.label('Menyimpan...');
-          saveBlob(blob, filename); return 'saved';
-        }
-      }
-    } catch (e) { /* lanjut */ }
+        if (blob && blob.size > 1024 && (await apakahUtuh(blob, exp))) return blob;
+      } catch (e) { /* proxy berikutnya */ }
+    }
+  }
+  return null;
+}
+
+async function downloadWithFallback(url, filename, isBig, expectedSize) {
+  // v19.6 - TANPA TAB / LINK LAIN, apa pun yang terjadi:
+  // langsung (auto-lanjut) -> semua proxy bergiliran -> server lokal.
+  // Semua gagal? Kartu jadi merah "Gagal - coba lagi" (tekan tombol download lagi).
+  const exp = Number(expectedSize) || 0;
+
+  if (isBig) {
+    if (window.__dlProg) window.__dlProg.label('Mengunduh...', 0);
+    let blob = await unduhLangsung(url, function (rec, total) {
+      if (window.__dlProg) window.__dlProg.recv(rec, total);
+    }, exp);
+    if (window.__dlSignal && window.__dlSignal.signal.aborted) return 'cancelled';
+    if (!blob) {
+      showToast('Koneksi langsung terblokir - memakai jalur alternatif...', 'info');
+      if (window.__dlProg) window.__dlProg.label('Jalur alternatif...', 0);
+      blob = await proxyBertahap(url, exp);
+      if (window.__dlSignal && window.__dlSignal.signal.aborted) return 'cancelled';
+    }
+    if (!blob) {
+      try {
+        if (window.__dlProg) window.__dlProg.label('Server lokal...', 0);
+        const res = await fetchWithTimeout('/api/download?url=' + encodeURIComponent(url) + '&name=' + encodeURIComponent(filename), 30000);
+        if (res && res.ok) { const b2 = await res.blob(); if (b2 && b2.size) blob = b2; }
+      } catch (e) {}
+      if (window.__dlSignal && window.__dlSignal.signal.aborted) return 'cancelled';
+    }
+    if (!blob) {
+      if (window.__dlProg) window.__dlProg.done(false, 'Gagal - coba lagi');
+      showToast('Download gagal. Periksa koneksi internet lalu tekan tombol download sekali lagi.', 'error');
+      return 'failed';
+    }
+    if (window.__dlProg) window.__dlProg.label('Menyiapkan...', 1);
+    const final = await maybeReencode(blob, filename, isBig);
+    if (final === 'open') return 'open';
+    if (final && final.cancelled) return 'cancelled';
+    if (window.__dlSignal && window.__dlSignal.signal.aborted) return 'cancelled';
+    if (window.__dlProg) window.__dlProg.label('Menyimpan...', 2);
+    saveBlob(final.blob, final.filename); return 'saved';
   }
 
-  // 2) Lewat proxy CORS (paralel)
+  // Berkas kecil (mp3 / foto / cover): langsung -> proxy -> server lokal
+  if (window.__dlProg) window.__dlProg.label('Mengunduh...', 0);
   try {
-    showToast('Koneksi langsung diblokir, mencoba jalur alternatif...', 'info');
-    if (window.__dlProg) window.__dlProg.label('Jalur alternatif...');
-    const blob = await fetchViaProxyBlob(url);
-    if (window.__dlSignal && window.__dlSignal.signal.aborted) return 'cancelled';
-    if (blob && blob.size) {
-      if (isBig && blob.size > MEM_LIMIT_MB * 1048576) {
-        showToast('Berkas besar diunduh lewat browser supaya aman.', 'info');
-        openMedia(url, filename); return 'open';
-      }
-      if (window.__dlProg) window.__dlProg.label('Menyiapkan...');
-      const final = await maybeReencode(blob, filename, isBig);
-      if (final === 'open') return 'open';
-      if (window.__dlProg) window.__dlProg.label('Menyimpan...');
-      saveBlob(final.blob, final.filename); return 'saved';
-    }
-  } catch (e) { /* lanjut ke server */ }
-
-  // 3) Endpoint server lokal (bila dijalankan lewat server.js)
-  try {
-    if (window.__dlProg) window.__dlProg.label('Server lokal...');
-    const res = await fetchWithTimeout('/api/download?url=' + encodeURIComponent(url) + '&name=' + encodeURIComponent(filename), 30000);
+    const res = await fetchWithTimeout(url, 20000);
     if (res && res.ok) {
       const blob = await res.blob();
+      if (window.__dlSignal && window.__dlSignal.signal.aborted) return 'cancelled';
       if (blob && blob.size) {
-        if (window.__dlProg) window.__dlProg.label('Menyimpan...');
+        if (window.__dlProg) window.__dlProg.label('Menyimpan...', 2);
         saveBlob(blob, filename); return 'saved';
       }
     }
-  } catch (e) { /* lanjut ke tab baru */ }
-
-  // 4) Lapis terakhir: buka di tab baru (selalu jalan)
-  openMedia(url, filename);
-  return 'open';
+  } catch (e) { /* lanjut */ }
+  try {
+    if (window.__dlProg) window.__dlProg.label('Jalur alternatif...', 0);
+    const blob = await proxyBertahap(url, 0);
+    if (window.__dlSignal && window.__dlSignal.signal.aborted) return 'cancelled';
+    if (blob && blob.size) {
+      if (window.__dlProg) window.__dlProg.label('Menyimpan...', 2);
+      saveBlob(blob, filename); return 'saved';
+    }
+  } catch (e) { /* lanjut */ }
+  if (window.__dlProg) window.__dlProg.done(false, 'Gagal - coba lagi');
+  showToast('Download gagal. Periksa koneksi internet lalu tekan tombol download sekali lagi.', 'error');
+  return 'failed';
 }
-
-
 
 let lastEncodedDuration = 0;
 
@@ -7269,10 +7553,9 @@ async function patchMp4Duration(blob, seconds) {
 // Putuskan perlu encode ulang atau tidak (hanya untuk berkas video)
 async function maybeReencode(blob, filename, isBig) {
   const isVideo = /\.(mp4|webm|mov|mkv)$/i.test(filename) || (isBig && blob.type.indexOf('video') === 0);
-  // v18: re-encode dipicu toggle "Encode ulang" ATAU pilihan resolusi;
-  // FPS mati -> saat dipicu resolusi saja, FPS mengikuti video asli (resOnly)
-  const resOnly = !fpsReencode && !!resSideTerpilih();
-  if (!isVideo || (!fpsReencode && !resSideTerpilih())) return { blob: blob, filename: filename };
+  // v19: FPS dihapus — proses HANYA mengikuti pilihan resolusi; FPS selalu ikut video asli
+  const resOnly = true;
+  if (!isVideo || !resSideTerpilih()) return { blob: blob, filename: filename };
 
   // ---- PENGAMAN ANTI-CRASH: jangan proses berkas besar di HP ----
   const mb = blob.size / 1048576;
@@ -7299,6 +7582,7 @@ async function maybeReencode(blob, filename, isBig) {
         showToast(resOnly ? ('Menyesuaikan resolusi ' + resNamaTerpilih() + ': ' + step + '%') : (fpsModeKualitas(fps) ? ('Mode kualitas ' + fps + ' FPS: ' + step + '%') : ('Memproses ke ' + fps + ' FPS: ' + step + '%')), 'info');
       }
     }, resOnly);
+    if (window.__dlSignal && window.__dlSignal.signal.aborted) return { cancelled: true };
     if (hasil && hasil.blob && hasil.blob.size) {
       const outFps = hasil.fps || fps;
       const mk = !!hasil.modeKualitas;
@@ -7316,8 +7600,9 @@ async function maybeReencode(blob, filename, isBig) {
       if (hasil.adaAudio === false) showToast('Catatan: perangkat ini tidak bisa memproses audio, videonya tanpa suara.', 'info');
       return { blob: hasil.blob, filename: newName };
     }
-    showToast('Perangkat ini belum bisa memproses ulang video, file asli tetap diunduh.', 'info');
+    if (!(window.__dlSignal && window.__dlSignal.signal.aborted)) showToast('Perangkat ini belum bisa memproses ulang video, file asli tetap diunduh.', 'info');
   } catch (e) {
+    if (window.__dlSignal && window.__dlSignal.signal.aborted) return { cancelled: true };
     showToast('Proses ulang dilewati, file asli tetap diunduh.', 'info');
   }
   return { blob: blob, filename: filename };
@@ -7333,40 +7618,60 @@ function dlProgressShow(name) {
   if (wrap) wrap.remove();
   wrap = document.createElement('div');
   wrap.id = 'dlProgWrap';
+  const nm = String(name).replace(/^tikryz_/, '').replace(/_\d{10,}.*$/, '').slice(0, 26) || 'media';
   wrap.innerHTML =
     '<div class="dlprog" id="dlProgCard">' +
     '<span class="dlprog-c tl"></span><span class="dlprog-c br"></span>' +
     '<div class="dlprog-head">' +
-    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2.2"><path d="M12 3v12"/><polyline points="7 10 12 15 17 10"/><path d="M5 21h14"/></svg>' +
-    '<span class="dlprog-title">Menyiapkan...</span>' +
-    '<button type="button" class="dlprog-x" title="Batalkan download" aria-label="Batalkan download">' +
-    '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+    '<svg class="dlprog-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2.2"><path d="M12 3v12"/><polyline points="7 10 12 15 17 10"/><path d="M5 21h14"/></svg>' +
+    '<div class="dlprog-titles"><span class="dlprog-name">' + nm + '</span><span class="dlprog-title">Menyiapkan...</span></div>' +
+    '<button type="button" class="dlprog-x" title="Batalkan proses" aria-label="Batalkan proses">' +
+    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
     '</button></div>' +
+    '<div class="dlprog-steps">' +
+    '<span class="dlstep" data-s="0"><i>1</i>UNDUH</span><span class="dlsep"></span>' +
+    '<span class="dlstep" data-s="1"><i>2</i>PROSES</span><span class="dlsep"></span>' +
+    '<span class="dlstep" data-s="2"><i>3</i>SIMPAN</span>' +
+    '<b class="dlprog-pct">0%</b></div>' +
     '<div class="dlprog-bar"><div class="dlprog-fill"></div></div>' +
-    '<div class="dlprog-meta"><b class="dlprog-pct">0%</b><span class="dlprog-size"></span><span class="dlprog-speed"></span></div>' +
+    '<div class="dlprog-meta"><span class="dlprog-size"></span><span class="dlprog-speed"></span></div>' +
     '</div>';
   document.body.appendChild(wrap);
   const card = wrap.querySelector('.dlprog');
   const title = wrap.querySelector('.dlprog-title');
+  const steps = wrap.querySelectorAll('.dlstep');
   const fill = wrap.querySelector('.dlprog-fill');
   const pctEl = wrap.querySelector('.dlprog-pct');
   const sizeEl = wrap.querySelector('.dlprog-size');
   const spdEl = wrap.querySelector('.dlprog-speed');
-  wrap.querySelector('.dlprog-x').addEventListener('click', function () {
-    try { if (window.__dlSignal) window.__dlSignal.abort(); } catch (e) {}
-  });
-  const st = { t0: performance.now(), lastRec: 0, lastT: performance.now(), spd: 0 };
+  const st = { lastRec: 0, lastT: performance.now(), spd: 0 };
   const me = {};
   window.__dlProg = me;
+  let curStep = -1;
+  wrap.querySelector('.dlprog-x').addEventListener('click', function () {
+    title.textContent = 'Membatalkan...';
+    try { window.__dlSignal.abort(); } catch (e) {}
+  });
   function paint(pct, indet) {
     card.classList.toggle('indet', !!indet);
     const pr = Math.max(0, Math.min(100, pct));
     fill.style.width = (indet ? 38 : pr) + '%';
-    pctEl.textContent = indet ? '···' : Math.round(pr) + '%';
+    pctEl.textContent = indet ? '\u00b7\u00b7\u00b7' : Math.round(pr) + '%';
   }
   function fmtMB(b) { return (b / 1048576).toFixed(1) + ' MB'; }
-  me.label = function (t) {
-    title.textContent = String(name).replace(/^tikryz_/, '').slice(0, 26) + ' · ' + t;
+  me.step = function (i) {
+    if (i === curStep) return;
+    curStep = i;
+    steps.forEach(function (sl, k) {
+      const done = k < i, aktif = k === i;
+      sl.classList.toggle('ok', done);
+      sl.classList.toggle('on', aktif);
+      sl.querySelector('i').textContent = done ? '\u2713' : String(k + 1);
+    });
+  };
+  me.label = function (t, step) {
+    if (typeof step === 'number') me.step(step);
+    title.textContent = t;
   };
   me.recv = function (rec, total) {
     const now = performance.now();
@@ -7376,12 +7681,19 @@ function dlProgressShow(name) {
     sizeEl.textContent = fmtMB(rec) + (total > 0 ? ' / ' + fmtMB(total) : '');
     spdEl.textContent = st.spd > 10240 ? (fmtMB(st.spd) + '/s') : '';
   };
-  me.pct = function (p, tag) { paint(p, false); sizeEl.textContent = tag || ''; spdEl.textContent = ''; };
+  me.pct = function (p, tag) {
+    me.step(Math.max(curStep, 1));
+    paint(p, false);
+    sizeEl.textContent = tag || '';
+    spdEl.textContent = '';
+  };
   me.done = function (ok, msg) {
     if (window.__dlProg !== me) return;
     paint(ok ? 100 : 0, false);
-    title.textContent = ok ? 'Download Selesai \u2713' : 'Download Dibatalkan';
-    sizeEl.textContent = msg || ''; spdEl.textContent = '';
+    if (ok) { me.step(3); title.textContent = 'Selesai'; }
+    else { title.textContent = 'Dibatalkan'; }
+    sizeEl.textContent = msg || '';
+    spdEl.textContent = '';
     card.classList.add(ok ? 'ok' : 'bad');
     window.__dlProg = null;
     setTimeout(function () { wrap.classList.remove('on'); setTimeout(function () { wrap.remove(); }, 350); }, ok ? 1900 : 1000);
@@ -7390,7 +7702,7 @@ function dlProgressShow(name) {
   return me;
 }
 
-async function triggerDownload(url, name, type, el) {
+async function triggerDownload(url, name, type, el, expectedSize) {
   try {
     if (!url) { showToast('Link download tidak tersedia untuk pilihan ini.', 'error'); return; }
     const ext = type === 'mp3' ? 'mp3' : (type === 'cover' || type === 'image') ? 'jpg' : 'mp4';
@@ -7402,7 +7714,7 @@ async function triggerDownload(url, name, type, el) {
     window.__dlSignal = new AbortController();
     dlProgressShow(name);
     let hasil = 'open';
-    try { hasil = await downloadWithFallback(url, filename, isBig); }
+    try { hasil = await downloadWithFallback(url, filename, isBig, expectedSize); }
     catch (e) { openMedia(url, filename); hasil = 'open'; }
     if (hasil === 'cancelled') {
       if (window.__dlProg) window.__dlProg.done(false, 'Dibatalkan');
@@ -7410,8 +7722,10 @@ async function triggerDownload(url, name, type, el) {
     } else if (hasil === 'saved') {
       showToast('Download ' + name + ' berhasil! Selesai.', 'success');
       if (window.__dlProg) window.__dlProg.done(true, 'Tersimpan \u2713');
+    } else if (hasil === 'failed') {
+      if (window.__dlProg) window.__dlProg.done(false, 'Gagal - coba lagi');
     } else {
-      if (window.__dlProg) window.__dlProg.done(true, 'Dibuka di tab baru');
+      if (window.__dlProg) window.__dlProg.done(true, 'Selesai');
     }
   } catch (e) {
     try { showToast('Download dialihkan ke tab baru. Tekan lama untuk menyimpan.', 'info'); } catch (_) {}
@@ -7679,7 +7993,7 @@ function closeSettingsForce() { document.getElementById('settingsModal')?.classL
 // v11.6 — PENGATURAN FPS VIDEO (30–120) · MB ikut FPS
 // ==========================================================
 const FPS_OPTIONS = [30, 60, 90, 120];
-const FPS_BASE_BITRATE = 4_000_000;      // 30 FPS = 4 Mbps
+const FPS_BASE_BITRATE = 5_000_000;      // v19: dasar 5 Mbps (estimasi & anggaran lebih lapang)
 let videoFps = (() => {
   const v = parseInt(localStorage.getItem('tks_fps') || '30', 10);
   return FPS_OPTIONS.includes(v) ? v : 30;
@@ -7704,11 +8018,10 @@ function fpsModeKualitas(fps) { return (Number(fps) || 30) >= FPS_MODE_KUALITAS;
 const FPS_FEATURE_ENABLED = false;
 
 // ========== RESOLUSI HASIL: Otomatis / 1080p / 2K / 4K ==========
+// v19.7: 2K & 4K DIHAPUS - hanya Otomatis & 1080p
 const RES_OPTIONS = [
   { key:'auto', side:0,    nama:'Otomatis' },
   { key:'1080', side:1920, nama:'1080p' },
-  { key:'1440', side:2560, nama:'2K' },
-  { key:'2160', side:3840, nama:'4K' },
 ];
 let videoRes = 'auto';
 try { const s = localStorage.getItem('tks_res'); if (s && RES_OPTIONS.some(o => o.key === s)) videoRes = s; } catch (e) {}
@@ -7718,8 +8031,6 @@ function setVideoRes(k) {
   if (!RES_OPTIONS.some(o => o.key === k)) return;
   videoRes = k;
   try { localStorage.setItem('tks_res', k); } catch (e) {}
-  // v16: resolusi konkret dipilih -> nyalakan otomatis mesin encode ulang
-  // supaya pilihan resolusi benar-benar dipakai saat download
   if (k !== 'auto' && !fpsReencode && ENCODE_ENABLED) {
     fpsReencode = true;
     try { localStorage.setItem('tks_fps_reencode', 'on'); } catch (e) {}
@@ -7731,6 +8042,16 @@ function setVideoRes(k) {
   applyVideoRes();
   showToast('Kualitas video diset ' + resNamaTerpilih() + ' \u00b7 ukuran file menyesuaikan', 'success');
 }
+// Perkiraan ukuran hasil (MB) utk resolusi terpilih, berdasar durasi video
+function estimasiMBRes(k) {
+  const o = RES_OPTIONS.find(r => r.key === k);
+  const secs = Number(lastVideoDuration || (currentData && currentData.duration) || 0);
+  if (!o || !o.side || !secs) return '';
+  const side = o.side;
+  const bps = side * (side * 16 / 9) * 0.26 * 30;   // piksel x 30fps x bpp
+  return (bps * secs / 8_000_000).toFixed(0);
+}
+// v19.7: modal konfirmasi 2K/4K dihapus (opsi tidak ada lagi)
 function applyVideoRes() {
   document.querySelectorAll('[data-res]').forEach(r => r.classList.toggle('active', r.dataset.res === videoRes));
   applyVideoFps();
@@ -7744,33 +8065,23 @@ function fpsNormalUntuk(durasi) {
   return (dur > 0 && dur * 60 <= batas) ? 60 : 30;   // 60 bila masih ringan, kalau tidak 30 (normal)
 }
 
-function fpsChipsHTML() {
-  return FPS_OPTIONS.map(f =>
-    `<button type="button" class="fps-chip${videoFps === f ? ' active' : ''}" data-fps="${f}" onclick="setVideoFps(${f})">${f} FPS</button>`
-  ).join('');
-}
-
 function updateAllFpsHints() {
   const mbPerSec = (bitrateUI(videoFps) / 8_000_000).toFixed(1);
   const total = estimateOutputMB();
   document.querySelectorAll('.fps-size-hint').forEach(el => {
-    // v18: FPS mati -> info fokus ke resolusi
-    let txt = FPS_FEATURE_ENABLED
-      ? (fpsModeKualitas(videoFps)
-        ? `Mode kualitas ${videoFps} FPS \u00b7 video tetap normal \u00b7 kira-kira ${mbPerSec} MB per detik`
-        : `Aktif ${videoFps} FPS \u00b7 kira-kira ${mbPerSec} MB per detik`)
-      : `Resolusi ${resNamaTerpilih()} \u00b7 FPS mengikuti video asli`;
-    if (total) txt += ` \u00b7 video ini jadi \u00b1${total} MB`;
-    if (!fpsReencode && !resSideTerpilih()) txt += ' \u00b7 (unduh apa adanya)';
+    // v19: FPS dihapus — info fokus resolusi
+    let txt = 'Resolusi ' + resNamaTerpilih();
+    if (total) txt += ' \u00b7 video ini jadi \u00b1' + total + ' MB';
+    if (!resSideTerpilih()) txt += ' \u00b7 unduh apa adanya';
     el.textContent = txt;
   });
-  // v14: baris ringkasan (resolusi + mode unduh) di area download
+  // ringkasan di area download
   document.querySelectorAll('.fps-meta-hint').forEach(el => {
-    el.textContent = 'Resolusi ' + resNamaTerpilih() + ' \u00b7 ' + (resSideTerpilih() ? 'encode ulang otomatis saat download' : 'unduh apa adanya') + ' \u00b7 FPS asli';
+    el.textContent = 'Resolusi ' + resNamaTerpilih() + ' \u00b7 ' + (resSideTerpilih() ? 'encode otomatis saat download' : 'unduh apa adanya');
   });
-  // v14.1: catatan di bawah pilihan resolusi
+  // catatan di bawah pilihan resolusi
   document.querySelectorAll('.res-note').forEach(el => {
-    el.innerHTML = 'Pilih <b>1080p / 2K / 4K</b> \u2014 video diproses otomatis ke resolusi itu saat download, FPS tetap seperti asli. <b style="color:#22d3ee">FITUR FPS: NONAKTIF SEMENTARA</b>.';
+    el.innerHTML = 'Pilih <b>1080p / 2K / 4K</b> \u2014 video diproses otomatis ke resolusi itu saat download &amp; dijaga tetap <b style="color:#22d3ee">jernih</b>.';
   });
 }
 
@@ -7785,13 +8096,14 @@ function applyVideoFps() {
     const badge = el.querySelector('.fps-summary-badge');
     if (badge) badge.style.display = fpsModeKualitas(videoFps) ? '' : 'none';
   });
+  // v19: FPS dihapus — teks fokus resolusi
   const d = document.getElementById('fpsEncodeDesc');
-  if (d) d.innerHTML = ENCODE_ENABLED ? fpsEncodeDescHTML() : 'Mode ini dimatikan di v14 supaya unduh tetap cepat &amp; aman \u2014 video tidak diproses ulang.';
+  if (d) d.innerHTML = 'Menyala otomatis saat memilih 1080p / 2K / 4K \u2014 video diolah ulang sesuai resolusi pilihan, dijaga tetap jernih.';
   const n = document.getElementById('fpsModeNote');
-  if (n && fpsReencode) {
-    n.innerHTML = fpsModeKualitas(videoFps)
-      ? 'Pilihan <b>' + videoFps + ' FPS = mode kualitas</b>: video tetap normal (mulus seperti aslinya), yang naik ketajaman & resolusi. Pengaman otomatis: resolusi & ukuran file dibatasi sesuai kemampuan perangkat \u2014 jadi tidak akan crash.'
-      : 'Video akan <b>diproses ulang</b> sesuai FPS di atas (ukuran MB ikut berubah). Pengaman otomatis: resolusi & jumlah frame disesuaikan dengan kemampuan perangkat, antrean encoder dibatasi, dan video yang terlalu besar diunduh apa adanya \u2014 jadi tidak akan crash.';
+  if (n) {
+    n.innerHTML = resSideTerpilih()
+      ? '<b>Encode ulang aktif:</b> video diproses otomatis ke <b>' + resNamaTerpilih() + '</b> saat download \u2014 FPS tetap seperti video asli. Pengaman otomatis: resolusi &amp; ukuran file disesuaikan kemampuan perangkat.'
+      : '<b>Mode Normal aktif:</b> video diunduh apa adanya \u2014 paling cepat &amp; aman. Pilih resolusi 1080p / 2K / 4K untuk mengaktifkan encode ulang otomatis.';
   }
   updateAllFpsHints();
 }
@@ -7919,7 +8231,7 @@ function downloadQuality(key, el) {
   // v16: transparan — bila sumber menyediakan stream yang sama untuk beberapa opsi kualitas
   const kembar = qualityOptions.filter(x => x.url === o.url && x.key !== o.key);
   if (kembar.length && !o.realHdr) showToast('Sumber hanya menyediakan satu stream - kualitas terbaik yang tersedia diunduh.', 'info');
-  triggerDownload(o.url, 'video_' + o.key, o.key, el || document.querySelector('.opt-row[data-q="' + key + '"]'));
+  triggerDownload(o.url, 'video_' + o.key, o.key, el || document.querySelector('.opt-row[data-q="' + key + '"]'), o.size);
 }
 
 function downloadSelectedQuality(el) { downloadQuality(selectedQuality, el); }
@@ -8067,6 +8379,9 @@ let fpsReencode = (() => {
   if (!ENCODE_ENABLED) return false;
   try { return localStorage.getItem('tks_fps_reencode') === 'on'; } catch (e) { return false; }
 })();
+// v19: FPS DIHAPUS — toggle encode lama dinormalkan; proses hanya mengikuti pilihan resolusi
+fpsReencode = false;
+try { localStorage.removeItem('tks_fps_reencode'); } catch (e) {}
 
 function encodeModeBlocked() {
   // v16: tidak lagi memblokir — hanya pengaman bila encoder tidak tersedia di perangkat
@@ -8159,7 +8474,6 @@ async function reencodeWithWebCodecs(sourceBlob, fps, onProgress, resOnly) {
 
   // --- Pilihan pengguna: sampai 4K (boleh memperbesar bila sumbernya lebih kecil) ---
   let sidePakai = resSideTerpilih() || sideAuto;
-  if (sidePakai >= 3840 && duration > 60) { sidePakai = 2560; showToast('Video panjang: 4K dialihkan ke 2K supaya perangkat tidak berat.', 'info'); }
   const skala = sidePakai / Math.max(W0, H0);
   W = Math.max(2, Math.floor(W0 * skala / 2) * 2);
   H = Math.max(2, Math.floor(H0 * skala / 2) * 2);
@@ -8179,7 +8493,8 @@ async function reencodeWithWebCodecs(sourceBlob, fps, onProgress, resOnly) {
     // v18: HANYA RESOLUSI — frame rate mengikuti video asli (maks 60) -> tetap mulus
     useFps = Math.max(24, Math.min(60, fpsSumber));
     kualitasFps = 0;
-    showToast('Resolusi ' + resNamaTerpilih() + ' \u00b7 FPS mengikuti video asli (' + useFps + ').', 'info');
+    const estRes = estimasiMBRes(videoRes);
+    showToast('Resolusi ' + resNamaTerpilih() + (estRes ? ' \u00b7 \u00b1' + estRes + ' MB' : '') + ' \u00b7 FPS asli ' + useFps + ' \u00b7 diproses supaya tetap jernih.', 'info');
   } else if (modeKualitas) {
     // MODE KUALITAS: frame rate mengikuti sumber (maks 60), SETIAP frame di-encode -> CFR mulus.
     // Yang naik: resolusi (sampai 4K) & bitrate. Video tetap normal.
@@ -8206,7 +8521,7 @@ async function reencodeWithWebCodecs(sourceBlob, fps, onProgress, resOnly) {
   }
 
   // Bitrate akhir mengikuti piksel x frame (naik terus sampai 4K), dibatasi kemampuan perangkat
-  let bitratePakai = bitratePiksel(W, H, useFps, modeKualitas, kualitasFps || Number(fps) || 0);
+  let bitratePakai = bitratePiksel(W, H, useFps, modeKualitas || resOnly, kualitasFps || 120);
   bitratePakai = Math.min(bitratePakai, IS_MOBILE ? 40_000_000 : 100_000_000);
   if ((bitratePakai * duration) / 8_000_000 > MAX_OUT_MB) bitratePakai = Math.max(1_200_000, Math.floor((MAX_OUT_MB * 8_000_000) / duration));
   if (resSideTerpilih() && resSideTerpilih() >= Math.max(W0, H0)) showToast('Sumber ' + Math.max(W0, H0) + 'p \u2014 hasil dibuat ' + Math.max(W, H) + 'p (' + resNamaTerpilih() + ').', 'info');
@@ -8229,7 +8544,7 @@ async function reencodeWithWebCodecs(sourceBlob, fps, onProgress, resOnly) {
         const conf = { codec, width: uk.w, height: uk.h, bitrate: bitratePakai, framerate: useFps };
         // CBR: ukuran file paling dekat ke perkiraan MB (mode normal & mode kualitas)
         if (mode) conf.bitrateMode = mode;
-        if (modeKualitas) conf.latencyMode = 'quality';   // fokus ketajaman, bukan kecepatan
+        if (modeKualitas || resOnly) conf.latencyMode = 'quality';   // v19: fokus ketajaman (juga mode resolusi)
         const sup = await VideoEncoder.isConfigSupported(conf).catch(() => ({ supported: false }));
         if (sup && sup.supported) { vidConf = conf; W = uk.w; H = uk.h; if (side !== sidePakai) resTurun = true; break; }
       }
@@ -8305,10 +8620,19 @@ async function reencodeWithWebCodecs(sourceBlob, fps, onProgress, resOnly) {
   const MAX_QUEUE = (W * H) > 3_000_000 ? (IS_MOBILE ? 2 : 4) : (IS_MOBILE ? 4 : 8);
   const MAX_BATCH = IS_MOBILE ? 60 : 240;
   // Seek per frame: paling akurat & mulus. Dipakai bila jumlah frame masih wajar.
-  const SEEK_LIMIT = IS_MOBILE ? (LOW_MEM ? 720 : 1500) : 4200;
+  const SEEK_LIMIT = IS_MOBILE ? (LOW_MEM ? 600 : 1100) : 2600;   // v19.1: selesai lebih cepat
   let seekMode = totalFrames <= SEEK_LIMIT;
   let produced = 0, covered = 0, jumlahFrame = 0;
   let stopped = false;
+  // v19.1: tombol X WAJIB membatalkan proses encode juga (bukan cuma unduhan)
+  const dlSig = window.__dlSignal || null;
+  const dibatalkan = () => !!(dlSig && dlSig.signal && dlSig.signal.aborted);
+  let onDlAbort = null;
+  if (dlSig && dlSig.signal) {
+    onDlAbort = function () { stopped = true; };
+    if (dlSig.signal.aborted) stopped = true;
+    else { try { dlSig.signal.addEventListener('abort', onDlAbort); } catch (e) {} }
+  }
 
   const encodeCurrent = (index) => {
     try {
@@ -8375,8 +8699,8 @@ async function reencodeWithWebCodecs(sourceBlob, fps, onProgress, resOnly) {
       const t0 = performance.now();
       await seekTo(t);
       // Pengaman: seek lambat ATAU mode ini kelamaan -> lanjut mode waktu-nyata
-      if (performance.now() - t0 > 250) { seekOk = false; break; }
-      if (performance.now() - tSeekStart > 20000) { seekOk = false; break; }
+      if (performance.now() - t0 > 220) { seekOk = false; break; }
+      if (performance.now() - tSeekStart > 12000) { seekOk = false; break; }   // v19.1: cepat alih mode
       // Tunggu antrean encoder (memori aman)
       let tunggu = 0;
       while ((videoEncoder.encodeQueueSize || 0) > MAX_QUEUE && tunggu < 400) {
@@ -8399,7 +8723,7 @@ async function reencodeWithWebCodecs(sourceBlob, fps, onProgress, resOnly) {
     if (seekMode && !seekOk) showToast('Perangkat ini lambat saat seek \u2014 memakai mode hemat waktu.', 'info');
     try { v.currentTime = 0; } catch (e) {}
     try { await v.play(); } catch (e) {}
-    const budgetMs = duration * 1000 * (IS_MOBILE ? 2.5 : 3) + 20000;
+    const budgetMs = duration * 1000 * (IS_MOBILE ? 1.8 : 2.2) + 12000;   // v19.1: watchdog lebih ketat
     await new Promise((resolve) => {
       const t0 = performance.now();
       let index = produced;
@@ -8429,10 +8753,16 @@ async function reencodeWithWebCodecs(sourceBlob, fps, onProgress, resOnly) {
     });
   }
   stopped = true;
+  if (dibatalkan()) {
+    try { videoEncoder.close(); } catch (e) {}
+    try { URL.revokeObjectURL(srcUrl); } catch (e) {}
+    return null;
+  }
 
   // Lengkapi sisa frame (dengan pengaman antrean) supaya durasi video & audio sama persis
   let gagalIsi = 0;
   while (produced < totalFrames && gagalIsi < 60) {
+    if (stopped) break;
     if ((videoEncoder.encodeQueueSize || 0) > MAX_QUEUE) { await new Promise(r => setTimeout(r, 8)); continue; }
     if (!encodeCurrent(produced)) { gagalIsi++; await new Promise(r => setTimeout(r, 10)); continue; }
     if (produced % 60 === 0) await new Promise(r => setTimeout(r, 0));
@@ -8498,6 +8828,7 @@ async function reencodeWithWebCodecs(sourceBlob, fps, onProgress, resOnly) {
   try { v.removeAttribute('src'); v.load(); } catch (e) {}
   try { URL.revokeObjectURL(srcUrl); } catch (e) {}
 
+  if (onDlAbort && dlSig && dlSig.signal) { try { dlSig.signal.removeEventListener('abort', onDlAbort); } catch (e) {} }
   const blob = new Blob([muxer.target.buffer], { type: 'video/mp4' });
   if (!blob.size) return null;
   const fpsNyata = (modeKualitas && jumlahFrame > 0 && outDur > 0) ? Math.max(1, Math.round(jumlahFrame / outDur)) : useFps;
@@ -8718,37 +9049,35 @@ function fpsPanelHTML(compact = true) {
   return `
   <div class="opt-panel${compact ? ' compact' : ''}" id="fpsPanel">
     <div class="opt-head" style="font-size:.8rem">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-      FPS Video
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8"/></svg>
+      Resolusi Video
     </div>
-    <div class="opt-list">${fpsRowsHTML()}</div>
+    ${resSectionHTML(false)}
     <div class="opt-head" style="font-size:.8rem;margin-top:14px">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M12 2v4M12 18v4M4.9 4.9l2.9 2.9M16.2 16.2l2.9 2.9M2 12h4M18 12h4M4.9 19.1l2.9-2.9M16.2 7.8l2.9-2.9"/></svg>
       Mode Proses (Otomatis)
     </div>
     <div class="opt-list">
-      <div class="opt-row${(!fpsReencode && !resSideTerpilih()) ? ' active' : ''}" data-reencode="off" onclick="modeProsesInfo()">
+      <div class="opt-row${!resSideTerpilih() ? ' active' : ''}" data-reencode="off" onclick="modeProsesInfo()">
         <div class="opt-radio"></div>
         <div class="opt-main">
-          <div class="opt-name">Normal <span class="opt-badge badge-normal">${(!fpsReencode && !resSideTerpilih()) ? 'AKTIF' : 'SIAP'}</span></div>
+          <div class="opt-name">Normal <span class="opt-badge badge-normal">${!resSideTerpilih() ? 'AKTIF' : 'SIAP'}</span></div>
           <div class="opt-sub">Resolusi Otomatis \u2014 video diunduh apa adanya, paling cepat &amp; aman</div>
         </div>
       </div>
-      <div class="opt-row${(fpsReencode || resSideTerpilih()) ? ' active' : ''}" data-reencode="on" onclick="modeProsesInfo()">
+      <div class="opt-row${resSideTerpilih() ? ' active' : ''}" data-reencode="on" onclick="modeProsesInfo()">
         <div class="opt-radio"></div>
         <div class="opt-main">
-          <div class="opt-name">Encode ulang resolusi <span class="opt-badge">${(fpsReencode || resSideTerpilih()) ? 'AKTIF' : 'OTOMATIS'}</span></div>
-          <div class="opt-sub" id="fpsEncodeDesc">Menyala otomatis saat memilih 1080p / 2K / 4K \u2014 FPS mengikuti video asli</div>
+          <div class="opt-name">Encode ulang resolusi <span class="opt-badge">${resSideTerpilih() ? 'AKTIF' : 'OTOMATIS'}</span></div>
+          <div class="opt-sub" id="fpsEncodeDesc">Menyala otomatis saat memilih 1080p / 2K / 4K \u2014 dijaga tetap jernih</div>
         </div>
       </div>
     </div>
     <div class="opt-note fps-size-hint" style="color:var(--neon);font-weight:700"></div>
     <div class="opt-note" style="color:var(--text3)">Mode proses di perangkat ini: <b style="color:${CAN_REENCODE ? 'var(--neon)' : '#f87171'}">${encodeModeLabel()}</b>${CAN_REENCODE ? '' : ' \u2014 video akan diunduh apa adanya.'}</div>
-    <div class="opt-note" style="margin-top:6px" id="fpsModeNote">${fpsReencode
-      ? (fpsModeKualitas(videoFps)
-        ? 'Pilihan <b>' + videoFps + ' FPS = mode kualitas</b>: video tetap normal (mulus seperti aslinya), yang naik ketajaman & resolusi. Pengaman otomatis: resolusi & ukuran file dibatasi sesuai kemampuan perangkat \u2014 jadi tidak akan crash.'
-        : 'Video akan <b>diproses ulang</b> sesuai FPS di atas (ukuran MB ikut berubah). Pengaman otomatis: resolusi & jumlah frame disesuaikan dengan kemampuan perangkat, antrean encoder dibatasi, dan video yang terlalu besar diunduh apa adanya \u2014 jadi tidak akan crash.')
-      : '<b>Mode Normal aktif:</b> video diunduh apa adanya \u2014 paling cepat, paling aman & hemat memori. Aktifkan <b>Encode ulang</b> untuk memakai pilihan FPS &amp; resolusi.'}${ENCODE_ENABLED ? ' Angka MB di atas hanya perkiraan.' : ''}</div>
+    <div class="opt-note" style="margin-top:6px" id="fpsModeNote">${resSideTerpilih()
+      ? '<b>Encode ulang aktif:</b> video diproses otomatis ke <b>' + resNamaTerpilih() + '</b> saat download \u2014 FPS tetap seperti video asli. Pengaman otomatis: resolusi &amp; ukuran file disesuaikan kemampuan perangkat.'
+      : '<b>Mode Normal aktif:</b> video diunduh apa adanya \u2014 paling cepat, paling aman & hemat memori. Pilih resolusi 1080p / 2K / 4K untuk mengaktifkan encode ulang otomatis.'}</div>
   </div>`;
 }
 
@@ -8758,7 +9087,7 @@ function fpsSummaryHTML() {
   return `
   <div class="opt-panel compact fps-summary" id="fpsSummary">
     <div class="fps-summary-ico">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8"/></svg>
     </div>
     <div class="fps-summary-main">
       <div class="fps-summary-title">Resolusi Video <b class="fps-summary-fps">${resNamaTerpilih()}</b><span class="opt-badge fps-summary-badge" style="display:none">KUALITAS</span></div>
@@ -8805,11 +9134,11 @@ function faktorResolusiUI() {
 // ===== Bitrate berbasis piksel x frame =====
 // Hasil: makin tinggi resolusi (sampai 4K) -> makin besar MB. FPS juga ikut menaikkan.
 function bitratePiksel(W, H, fpsSlot, modeKualitas, kualitasFps) {
-  const bpp = modeKualitas ? 0.16 : 0.22;   // mutu per piksel (mode kualitas lebih tinggi)
+  const bpp = modeKualitas ? 0.24 : 0.26;   // v19: mutu per piksel dinaikkan -> video lebih jernih
   let b = W * H * fpsSlot * bpp;
   if (modeKualitas) {
     const kf = Math.min(120, Math.max(90, Number(kualitasFps) || 120));
-    b *= 1 + ((kf - 90) / 30) * 0.25;      // 90 FPS x1,00 - 120 FPS x1,25
+    b *= 1 + ((kf - 90) / 30) * 0.3;       // v19: 90 FPS x1,00 - 120 FPS x1,30
   }
   return Math.max(400_000, Math.round(b));
 }
@@ -8839,11 +9168,10 @@ function fpsEncodeDescHTML() {
 }
 
 function resRowsHTML() {
+  // v19.7: 2K & 4K dihapus
   const R = [
     { key:'auto', nama:'Otomatis', sub:'ikut perangkat' },
     { key:'1080', nama:'1080p',    sub:'full hd' },
-    { key:'1440', nama:'2K',       sub:'1440p' },
-    { key:'2160', nama:'4K',       sub:'2160p' },
   ];
   return R.map(o => `
     <button type="button" class="res-chip${videoRes === o.key ? ' active' : ''}" data-res="${o.key}" onclick="setVideoRes('${o.key}')">
@@ -8862,17 +9190,7 @@ function resSectionHTML(withHead) {
     <div class="opt-note res-note"></div>`;
 }
 
-function fpsRowsHTML() {
-  // v18: FPS dimatikan sementara — baris tampil redup, tidak bisa dipilih
-  return FPS_OPTIONS.map(f => `
-    <div class="opt-row res-off" data-fps="${f}" onclick="setVideoFps(${f})">
-      <div class="opt-radio"></div>
-      <div class="opt-main">
-        <div class="opt-name">${f} FPS <span class="opt-badge badge-off">SEGERA</span></div>
-        <div class="opt-sub">Fitur dinonaktifkan sementara \u2014 video memakai FPS asli</div>
-      </div>
-    </div>`).join('');
-}
+// v19: fpsRowsHTML DIHAPUS — fitur FPS dilepas, hanya Resolusi yang aktif.
 
 // ========== DOWNLOAD PP (FOTO PROFIL) ==========
 let downloadMode = 'video';
@@ -9289,7 +9607,7 @@ async function shareResult() {
   const url = document.getElementById('urlInput').value;
   if (!url) { showToast('Tidak ada link untuk dibagikan', 'error'); return; }
   if (navigator.share) {
-    try { await navigator.share({title:'TikRyzv14', text:'Download TikTok, IG & CapCut tanpa watermark', url}); } catch {}
+    try { await navigator.share({title:'TikRyz v10', text:'Download TikTok, IG & CapCut tanpa watermark', url}); } catch {}
   } else { copyLink(url); showToast('Link disalin untuk dibagikan!', 'info'); }
 }
 
@@ -9310,10 +9628,10 @@ function sendContactMessage() {
   if (!name) { showToast('Nama tidak boleh kosong.', 'error'); return; }
   if (!msg) { showToast('Pesan tidak boleh kosong.', 'error'); return; }
 
-  const subject = `[TikRyz v14] ${type} dari ${name}`;
+  const subject = `[TikRyz v10] ${type} dari ${name}`;
   const body = `Halo ${CONFIG.owner.name},
 
-Kamu menerima pesan baru dari form Kontak TikRyz v14.
+Kamu menerima pesan baru dari form Kontak TikRyz v10.
 
 Nama  : ${name}
 Email : ${email || '(tidak diisi)'}
@@ -9323,7 +9641,7 @@ Waktu : ${new Date().toLocaleString('id-ID')}
 Pesan:
 ${msg}
 
-— dikirim otomatis dari TikRyz v14`;
+— dikirim otomatis dari TikRyz v10`;
 
   copyText(body).catch(() => {});
 
@@ -9949,5 +10267,5 @@ setTimeout(async () => {
 </div>
 
 
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3d99857b94f4074',t:'MTc4OTgzMTQ0Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
